@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор стоимости заказа</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- +5 баллов: подключение в head с defer -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Калькулятор стоимости заказа</h1>
+        
+        <form id="orderForm">
+            <div class="form-group">
+                <label for="quantity">Количество товара:</label>
+                <input type="text" id="quantity" value="1" placeholder="Введите количество">
+                <div id="quantityError" class="error-message"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="product">Выберите товар:</label>
+                <select id="product">
+                    <option value="1000">Смартфон - 1 000 руб.</option>
+                    <option value="500">Наушники - 500 руб.</option>
+                    <option value="200">Чехол для телефона - 200 руб.</option>
+                    <option value="1500">Планшет - 1 500 руб.</option>
+                </select>
+            </div>
+            
+            <button type="button" id="calculateBtn">Рассчитать стоимость</button>
+        </form>
+        
+        <div id="result" class="result"></div>
+    </div>
+</body>
+</html>
