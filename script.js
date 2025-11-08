@@ -1,4 +1,3 @@
-// +5 баллов: инициализация после загрузки DOM
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
     
@@ -10,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const quantityError = document.getElementById('quantityError');
     const orderForm = document.getElementById('orderForm');
     
-    // +5 баллов: регулярное выражение для проверки ввода
+    // регулярное выражение для проверки ввода
     const quantityRegex = /^[1-9]\d*$/;
     
     /**
@@ -128,4 +127,5 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Инициализация при загрузке
     validateQuantity();
+
 });
