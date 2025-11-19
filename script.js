@@ -1,21 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
     
-    // Элементы DOM
     const quantityInput = document.getElementById('quantity');
     const productSelect = document.getElementById('product');
     const calculateBtn = document.getElementById('calculateBtn');
     const resultElement = document.getElementById('result');
     const quantityError = document.getElementById('quantityError');
     const orderForm = document.getElementById('orderForm');
-    
-    // регулярное выражение для проверки ввода
+
     const quantityRegex = /^[1-9]\d*$/;
     
-    /**
-     * Проверка корректности ввода количества
-     * @returns {boolean} true если ввод корректен
-     */
     function validateQuantity() {
         const value = quantityInput.value.trim();
         
@@ -44,10 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
     
-    /**
-     * Показать сообщение об ошибке
-     * @param {string} message - текст ошибки
-     */
+    
     function showError(message) {
         quantityError.textContent = message;
         quantityError.style.display = 'block';
@@ -55,19 +46,14 @@ document.addEventListener('DOMContentLoaded', function() {
         calculateBtn.disabled = true;
     }
     
-    /**
-     * Скрыть сообщение об ошибке
-     */
+
     function hideError() {
         quantityError.style.display = 'none';
         quantityInput.classList.remove('input-error');
         calculateBtn.disabled = false;
     }
     
-    /**
-     * +15 баллов: корректный подсчет стоимости товара
-     * Рассчитывает стоимость заказа
-     */
+
     function calculateCost() {
         if (!validateQuantity()) {
             return;
@@ -77,15 +63,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const price = parseFloat(productSelect.value);
         const totalCost = price * quantity;
         
-        // Получаем название товара
         const productText = productSelect.options[productSelect.selectedIndex].text;
         const productName = productText.split(' - ')[0];
         
-        // Форматируем числа с разделителями тысяч
         const formattedPrice = formatNumber(price);
         const formattedTotal = formatNumber(totalCost);
         
-        // Отображаем результат
         resultElement.innerHTML = `
             <strong>Стоимость заказа:</strong><br>
             Товар: ${productName}<br>
@@ -96,28 +79,21 @@ document.addEventListener('DOMContentLoaded', function() {
         resultElement.style.display = 'block';
     }
     
-    /**
-     * Форматирует число с разделителями тысяч
-     * @param {number} number - число для форматирования
-     * @returns {string} отформатированная строка
-     */
     function formatNumber(number) {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     }
     
-    // Обработчики событий
     quantityInput.addEventListener('input', validateQuantity);
     quantityInput.addEventListener('blur', validateQuantity);
     
     calculateBtn.addEventListener('click', calculateCost);
     
-    // Обработчик отправки формы (предотвращает стандартное поведение)
     orderForm.addEventListener('submit', function(event) {
         event.preventDefault();
         calculateCost();
     });
     
-    // Обработчик Enter в поле ввода
+
     quantityInput.addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
             event.preventDefault();
@@ -125,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Инициализация при загрузке
     validateQuantity();
 
 });
+
